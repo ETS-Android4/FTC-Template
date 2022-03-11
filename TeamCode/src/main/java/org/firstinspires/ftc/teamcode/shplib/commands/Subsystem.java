@@ -17,5 +17,6 @@ public class Subsystem {
         this.defaultCommand = defaultCommand;
     }
 
-    public void periodic(Telemetry telemetry) throws InterruptedException { }
+    public void periodic(Telemetry telemetry) throws InterruptedException {
+    }
 }

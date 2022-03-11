@@ -1,7 +1,4 @@
-
 package org.firstinspires.ftc.teamcode.subsystems;
-
-import static java.lang.Thread.sleep;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -74,7 +71,7 @@ public class Vision extends Subsystem {
         // processed since the last time we called it. Otherwise, it will return null. This
         // enables us to only run logic when there has been a new frame, as opposed to the
         // getLatestDetections() method which will always return an object.
-        ArrayList<AprilTagDetection> newDetections =  aprilTagPipeline.getDetectionsUpdate();
+        ArrayList<AprilTagDetection> newDetections = aprilTagPipeline.getDetectionsUpdate();
 
         if (newDetections != null) {
 //            telemetry.addData("FPS", camera.getFps());
