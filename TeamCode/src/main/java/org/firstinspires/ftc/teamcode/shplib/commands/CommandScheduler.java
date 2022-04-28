@@ -8,8 +8,8 @@ import java.util.Arrays;
 public final class CommandScheduler {
     private static CommandScheduler instance;
 
-    private final ArrayList<Command> commands = new ArrayList<Command>();
-    private final ArrayList<Subsystem> subsystems = new ArrayList<Subsystem>();
+    private final ArrayList<Command> commands = new ArrayList<>();
+    private final ArrayList<Subsystem> subsystems = new ArrayList<>();
     private Telemetry telemetry;
 
     public static CommandScheduler getInstance() {
@@ -40,15 +40,17 @@ public final class CommandScheduler {
         this.commands.addAll(Arrays.asList(commands));
     }
 
-    public void run() {
+    public void run() throws InterruptedException {
         for (int i = 0; i < commands.size(); i++) {
             Command command = commands.get(i);
+            command.execute();
             if (command.isFinished()) {
                 command.end();
                 commands.remove(i);
                 i--;
-            } else command.execute();
+            }
         }
+
         for (Subsystem subsystem : subsystems) {
             Command defaultCommand = subsystem.getDefaultCommand();
             if (defaultCommand != null) defaultCommand.execute();

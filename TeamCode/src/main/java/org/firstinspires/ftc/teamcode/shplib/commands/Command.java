@@ -14,6 +14,7 @@ public class Command {
 
     public void end() {
         if (nextCommand != null) CommandScheduler.getInstance().addCommand(nextCommand);
+
     }
 
     public boolean isFinished() {

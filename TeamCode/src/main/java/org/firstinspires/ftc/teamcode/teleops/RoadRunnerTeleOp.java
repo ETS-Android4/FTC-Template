@@ -19,45 +19,45 @@ public class RoadRunnerTeleOp extends LinearOpMode {
     private SampleMecanumDrive drive;
 
     public void runOpMode() {
-        drive = new SampleMecanumDrive(hardwareMap);
-
-        drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        // Set your initial pose to x: 10, y: 10, facing 90 degrees
-        // change initial pose x and y depending on starting position
-        drive.setPoseEstimate(new Pose2d(10, 10, Math.toRadians(90)));
-
-        telemetry.addData(">", "Press Play to start op mode");
-        telemetry.update();
-
-        waitForStart();
-
-        if (isStopRequested()) return;
-
-        while (opModeIsActive() && !isStopRequested()) {
-            drive.setWeightedDrivePower(
-                    new Pose2d(
-                            -gamepad1.left_stick_y,
-                            -gamepad1.left_stick_x,
-                            -gamepad1.right_stick_x
-                    )
-            );
-
-            // Make sure to call drive.update() on *every* loop
-            // Increasing loop time by utilizing bulk reads and minimizing writes will increase your odometry accuracy
-            drive.update();
-
-            // Retrieve your pose
-            Pose2d myPose = drive.getPoseEstimate();
-
-            telemetry.addData("x", myPose.getX());
-            telemetry.addData("y", myPose.getY());
-            telemetry.addData("heading", myPose.getHeading());
-            telemetry.update();
-
-            // Insert whatever teleop code you're using
-//            this.tankanumDrive(gamepad1.right_stick_y, gamepad1.left_stick_y, gamepad1.right_stick_x);
-        }
+//        drive = new SampleMecanumDrive(hardwareMap);
+//
+//        drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//
+//        // Set your initial pose to x: 10, y: 10, facing 90 degrees
+//        // change initial pose x and y depending on starting position
+//        drive.setPoseEstimate(new Pose2d(10, 10, Math.toRadians(90)));
+//
+//        telemetry.addData(">", "Press Play to start op mode");
+//        telemetry.update();
+//
+//        waitForStart();
+//
+//        if (isStopRequested()) return;
+//
+//        while (opModeIsActive() && !isStopRequested()) {
+//            drive.setWeightedDrivePower(
+//                    new Pose2d(
+//                            -gamepad1.left_stick_y,
+//                            -gamepad1.left_stick_x,
+//                            -gamepad1.right_stick_x
+//                    )
+//            );
+//
+//            // Make sure to call drive.update() on *every* loop
+//            // Increasing loop time by utilizing bulk reads and minimizing writes will increase your odometry accuracy
+//            drive.update();
+//
+//            // Retrieve your pose
+//            Pose2d myPose = drive.getPoseEstimate();
+//
+//            telemetry.addData("x", myPose.getX());
+//            telemetry.addData("y", myPose.getY());
+//            telemetry.addData("heading", myPose.getHeading());
+//            telemetry.update();
+//
+//            // Insert whatever teleop code you're using
+////            this.tankanumDrive(gamepad1.right_stick_y, gamepad1.left_stick_y, gamepad1.right_stick_x);
+//        }
     }
 
 //    public void tankanumDrive(double rightPwr, double leftPwr, double lateralPwr) {

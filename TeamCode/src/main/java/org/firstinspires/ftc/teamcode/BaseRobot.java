@@ -3,9 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.shplib.commands.CommandScheduler;
-import org.firstinspires.ftc.teamcode.shplib.commands.RunCommand;
-import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.Drive;
+import org.firstinspires.ftc.teamcode.subsystems.ArmSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 
 /**
  * Template created by Ayaan Govil on 8/21/2021. Last updated on 10/7/21.
@@ -16,21 +15,14 @@ import org.firstinspires.ftc.teamcode.subsystems.Drive;
 // basebot serves as the first execution point before flowing into the teleop
 
 public class BaseRobot extends OpMode {
-    public Drive drive = new Drive(hardwareMap);
-    public Arm arm = new Arm(hardwareMap);
-
-    public BaseRobot() {
-        CommandScheduler.getInstance().setTelemetry(telemetry);
-        // initialize subsystems
-    }
+    public DriveSubsystem drive;
+    public ArmSubsystem arm;
 
     @Override
     public void init() {
-        drive.setDefaultCommand(
-                new RunCommand(
-                        () -> drive.tankanum(gamepad1.right_stick_y, gamepad1.left_stick_y, gamepad1.right_stick_x)
-                )
-        );
+        CommandScheduler.getInstance().setTelemetry(telemetry);
+        drive = new DriveSubsystem(hardwareMap);
+        arm = new ArmSubsystem(hardwareMap);
     }
 
     // this function runs when you hit the start button after the init button
@@ -47,8 +39,10 @@ public class BaseRobot extends OpMode {
 
     @Override
     public void loop() {
-        CommandScheduler.getInstance().run();
-        // telemetry (inherited from OpMode class) serves as logging on the phone - we're constantly tracking the drive motor encoders by doing this
-
+        try {
+            CommandScheduler.getInstance().run();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
